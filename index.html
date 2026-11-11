@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es-GT" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+  <!-- v9: la etiqueta canonical la pone js/app.js según la vista (inicio o categoría),
+       para que Google indexe cada categoría por separado. No poner aquí una fija.
+       Tampoco og:url: así Facebook/WhatsApp usan el enlace exacto que se compartió. -->
+  
+  <!-- <meta name="robots" content="index, follow, noimageindex" /> --> 
+  <meta name="robots" content="index, follow" />
+
+  <meta name="theme-color" id="meta-theme-color" content="#003772" />
+    <title id="page-title">TECH | Tecnología, hogar, belleza y más en Guatemala</title>
+  <link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <meta name="description" id="meta-desc" content="TECH: tecnología, hogar y cocina, belleza, salud, herramientas, accesorios para carro y más. Entrega en 24 h en la capital, envíos a todo el país y pago contra entrega." />
+  <meta property="og:type" content="website" id="meta-og-type" />
+  <meta property="og:title" content="TECH | Tecnología, hogar, belleza y más en Guatemala" id="meta-og-title" />
+  <meta property="og:description" content="TECH: tecnología, hogar y cocina, belleza, salud, herramientas, accesorios para carro y más. Entrega en 24 h en la capital, envíos a todo el país y pago contra entrega." id="meta-og-description" />
+  <meta property="og:image" content="https://tech.rompecabezas.online/img/og-tech.jpg" id="meta-og-image" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_GT" />
+  <meta property="og:site_name" content="TECH" />
+  <meta name="twitter:card" content="summary_large_image" id="meta-twitter-card" />
+  
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- (Se quitó js/protecciones.js: bloqueaba imprimir, guardar y clic derecho a los clientes)
+       [AJUSTADO PARA SEO] Se quitó el detector de DevTools que borraba
+       document.body.innerHTML (medía window.outerWidth - window.innerWidth).
+       Ese detector podía dispararse en navegadores automatizados (incluido
+       el renderizador de Google) y dejar la página completamente vacía justo
+       cuando Google intenta indexarla — probable causa de "Rastreada:
+       actualmente sin indexar". Los bloqueos de teclado/clic-derecho de
+       abajo NO tocan el contenido de la página, así que no afectan la
+       indexación y se mantienen igual que antes. -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- SEO: Datos estructurados -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "TECH",
+    "description": "Tecnología, hogar, belleza, salud, herramientas y más en Guatemala.",
+    "url": "https://tech.rompecabezas.online/",
+    "logo": "https://tech.rompecabezas.online/img/TECH-512.png",
+    "image": "https://tech.rompecabezas.online/img/og-tech.jpg",
+    "telephone": "+50241084481",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ciudad de Guatemala",
+      "addressCountry": "GT"
+    },
+    "areaServed": "Guatemala",
+    "priceRange": "Q",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Catálogo de Productos TECH"
+    }
+  }
+  </script>
+</head>
+<body class="con-barra-confianza">
+  <!-- v9 (velocidad): marca la vista antes de dibujar la página, así el banner y la barra azul
+       ocupan su espacio desde el inicio y nada "salta" mientras carga. -->
+  <script>if (!/[?&](cat|sub|q|ver)=/.test(location.search)) document.body.classList.add("vista-inicio");</script>
+  <noscript>
+    <div style="padding:2rem 1rem; max-width:800px; margin:0 auto; font-family:sans-serif; color:#1C3F60;">
+      <h1>TECH | Tecnología, Hogar, Belleza, Herramientas y Más en Guatemala</h1>
+      <p>TECH es tu tienda en Guatemala de tecnología, hogar y cocina, belleza, salud, vitaminas, herramientas,
+        accesorios para carro y moto, deporte, librería y mascotas, con envíos a todo el país y pago contra entrega.</p>
+      <p>Ubicación: Ciudad de Guatemala, GT. Contactanos por WhatsApp para más información sobre nuestro catálogo.</p>
+      <p>Activá JavaScript en tu navegador para ver el catálogo completo con precios y disponibilidad en tiempo real.</p>
+    </div>
+  </noscript>
+
+  <aside id="aside-menu">
+    <header>
+        <img id="logo-sidebar" src="img/TECH-300.webp" alt="TECH" class="logo logo-glow" width="120" height="120">
+    </header>
+    <!-- v9: busca PRODUCTOS (muestra coincidencias con foto y precio) -->
+    <div class="busqueda-menu">
+      <i class="bi bi-search" aria-hidden="true"></i>
+      <input type="search" id="buscar-categoria" placeholder="Buscar productos…" autocomplete="off" aria-label="Buscar productos" aria-controls="sugerencias-menu">
+    </div>
+    <div id="sugerencias-menu" class="sugerencias-menu" hidden></div>
+    <nav id="menu-categorias"></nav>
+    <div class="aside-footer" id="aside-footer-container"></div>
+    <button id="cerrar-menu" aria-label="Cerrar menú"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+  </aside>
+
+  <!-- v9: barra de confianza (textos en CONFIG.barraConfianza, js/app.js) -->
+  <div id="barra-confianza" class="barra-confianza" role="region" aria-label="Por qué comprar en TECH"></div>
+
+  <header id="page-header" aria-label="Encabezado principal">
+    <div class="page-header-inner">
+      <button id="toggle-menu" class="header-toggle" aria-label="Abrir menú del catálogo">
+        <i class="bi bi-list"></i>
+        <span id="label-btn-menu">Categorías</span>
+      </button>
+      <a href="./" class="header-content-right" id="link-inicio-header" aria-label="TECH: ir al Inicio">
+        <img id="header-logo" src="img/TECH-300.webp" alt="TECH" class="header-logo" width="44" height="44">
+        <div class="page-header-copy">
+          <span id="header-title"></span>
+          <p id="header-subtitle"></p>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- v9: ruta de navegación (en el Inicio muestra "⌂ Inicio" como página actual) -->
+    <nav id="migas" class="migas en-inicio" aria-label="Ruta de navegación"><span class="migas-actual migas-aqui" aria-current="page"><i class="bi bi-house-door-fill" aria-hidden="true"></i> Inicio</span></nav>
+    <!-- v9: portada del Inicio — carrusel de ambientes + 2 banners de promoción (se configuran en CONFIG.portada) -->
+    <h1 id="titulo-principal">TECH <span class="h1-sub">Tecnología, hogar, belleza y mucho más en Guatemala</span></h1>
+    <p class="subtitle-seo" id="texto-subtitulo"></p>
+    <section id="portada" class="portada" aria-label="Destacados de TECH">
+      <div class="pt-carrusel" aria-roledescription="carrusel">
+        <div class="pt-pista" id="pt-pista"></div>
+        <button type="button" class="pt-flecha pt-prev" aria-label="Anterior"><i class="bi bi-arrow-left"></i></button>
+        <button type="button" class="pt-flecha pt-next" aria-label="Siguiente"><i class="bi bi-arrow-right"></i></button>
+        <div class="pt-puntos" id="pt-puntos" role="tablist" aria-label="Elegir diapositiva"></div>
+      </div>
+      <div class="pt-promos" id="pt-promos"></div>
+    </section>
+
+    <!-- v9: orden de la página = dónde estoy (ruta) → título → subcategorías → búsqueda/filtros → productos -->
+    <div id="encabezado-vista" class="encabezado-vista"></div>
+    <div id="contenedor-filtros-sub" role="tablist" aria-label="Subcategorías"></div>
+
+    <div class="barra-controles-catalogo">
+      <div class="seccion-busqueda-orden">
+        <div class="input-busqueda-moderno">
+          <i class="bi bi-search"></i>
+          <input type="text" id="buscar-producto-central" placeholder="Buscar por nombre, código o palabra clave...">
+        </div>
+        <div class="select-ordenar-moderno">
+          <select id="ordenar-productos">
+            <option value="predeterminado">Destacados</option>
+            <option value="precio-asc">Precio: Menor a Mayor</option>
+            <option value="precio-desc">Precio: Mayor a Menor</option>
+            <option value="alfa-asc">Nombre: A - Z</option>
+            <option value="alfa-desc">Nombre: Z - A</option>
+          </select>
+        </div>
+      </div>
+      <div class="fila-estado">
+        <div class="contador-resultados" id="contador-resultados">Cargando existencias...</div>
+        <label class="interruptor-disponibles" for="solo-disponibles">
+          <input type="checkbox" id="solo-disponibles" role="switch">
+          <span class="interruptor-pista" aria-hidden="true"></span>
+          Solo disponibles
+        </label>
+      </div>
+    </div>
+
+    <!-- ══ SECCIÓN ESTÁTICA SEO — visible para Google aunque JS no cargue ══ -->
+    <section class="seo-section" id="seo-static-content" aria-label="Información de TECH Guatemala">
+
+      <div class="seo-hero">
+        <h2>🛒 Tecnología, hogar, belleza y mucho más en Guatemala</h2>
+        <p>En TECH encuentras más de 1,500 productos para tu casa, tu carro, tu negocio y tu cuidado personal, con precio a la vista, envíos a toda Guatemala y pago contra entrega.</p>
+        <div class="seo-hero-badges">
+          <span class="seo-hero-badge">🚚 Envíos a toda Guatemala</span>
+          <span class="seo-hero-badge">💵 Pago contra entrega</span>
+          <span class="seo-hero-badge">💬 Atención por WhatsApp</span>
+          <span class="seo-hero-badge">🏷️ Precio a la vista</span>
+        </div>
+      </div>
+
+      <p class="seo-cats-title">Nuestras <span>Categorías de Productos</span></p>
+      <div class="seo-cats-grid">
+        <div class="seo-cat-card"><span class="seo-cat-icon">🎧</span><div class="seo-cat-name">Tecnología</div><div class="seo-cat-desc">Audio, cargadores, cables, gaming, cámaras, almacenamiento y accesorios para celular</div></div>
+        <div class="seo-cat-card"><span class="seo-cat-icon">🏠</span><div class="seo-cat-name">Hogar y Cocina</div><div class="seo-cat-desc">Cocina, limpieza, organización, iluminación y entretenimiento para el hogar</div></div>
+        <div class="seo-cat-card"><span class="seo-cat-icon">💅</span><div class="seo-cat-name">Belleza</div><div class="seo-cat-desc">Uñas, maquillaje, cuidado facial, cabello, cuidado corporal y fragancias</div></div>
+        <div class="seo-cat-card"><span class="seo-cat-icon">🧴</span><div class="seo-cat-name">Salud e Higiene</div><div class="seo-cat-desc">Higiene personal, cuidado de la piel y del cabello, bebé y aromaterapia</div></div>
+        <div class="seo-cat-card"><span class="seo-cat-icon">💊</span><div class="seo-cat-name">Vitaminas y Médico</div><div class="seo-cat-desc">Vitaminas, suplementos, digestivo, alergias, dolor y equipo médico</div></div>
+        <div class="seo-cat-card"><span class="seo-cat-icon">🛠️</span><div class="seo-cat-name">Herramientas y Jardín</div><div class="seo-cat-desc">Herramientas manuales, fijación, iluminación, jardín y seguridad</div></div>
+        <div class="seo-cat-card"><span class="seo-cat-icon">🚗</span><div class="seo-cat-name">Carros y Motos</div><div class="seo-cat-desc">Accesorios, limpieza y detailing, mantenimiento y fluidos, llantas</div></div>
+        <div class="seo-cat-card"><span class="seo-cat-icon">🏋️</span><div class="seo-cat-name">Deporte y Aire Libre</div><div class="seo-cat-desc">Fitness, camping, hidratación, soportes y mochilas</div></div>
+        <div class="seo-cat-card"><span class="seo-cat-icon">✏️</span><div class="seo-cat-name">Librería y Oficina</div><div class="seo-cat-desc">Útiles escolares, oficina, computación, arte y manualidades</div></div>
+        <div class="seo-cat-card"><span class="seo-cat-icon">🐶</span><div class="seo-cat-name">Mascotas</div><div class="seo-cat-desc">Antipulgas, higiene, alimento, vitaminas y juguetes</div></div>
+        <div class="seo-cat-card"><span class="seo-cat-icon">🎄</span><div class="seo-cat-name">Navidad</div><div class="seo-cat-desc">Luces LED, luces solares y decoración navideña</div></div>
+      </div>
+
+      <div class="seo-info-grid">
+        <div class="seo-info-card">
+          <div class="seo-info-card-header"><div class="seo-info-card-icon"><i class="bi bi-truck"></i></div><h3>Envíos a Toda Guatemala</h3></div>
+          <ul><li>Entrega en 24 horas en la Ciudad de Guatemala</li><li>Envíos a todos los departamentos</li><li>Número de guía para rastrear envíos a departamentos</li><li>Costo de envío confirmado por WhatsApp</li></ul>
+        </div>
+        <div class="seo-info-card">
+          <div class="seo-info-card-header"><div class="seo-info-card-icon"><i class="bi bi-shield-check"></i></div><h3>Formas de Pago</h3></div>
+          <ul><li>Transferencia o depósito bancario</li><li>Pago contra entrega</li><li>Contra entrega en departamentos: 5% de comisión</li><li>Tarjetas Visa (aplican restricciones)</li></ul>
+        </div>
+        <div class="seo-info-card">
+          <div class="seo-info-card-header"><div class="seo-info-card-icon"><i class="bi bi-people"></i></div><h3>¿Para Quién es TECH?</h3></div>
+          <ul><li>Familias y hogares</li><li>Dueños de carro y moto</li><li>Estudiantes y oficinas</li><li>Amantes de la tecnología</li><li>Quienes cuidan su salud y belleza</li></ul>
+        </div>
+        <div class="seo-info-card">
+          <div class="seo-info-card-header"><div class="seo-info-card-icon"><i class="bi bi-star"></i></div><h3>¿Por Qué Elegir TECH?</h3></div>
+          <ul><li>Más de 1,500 productos en un solo lugar</li><li>Precio a la vista en cada producto</li><li>Disponibilidad indicada en cada producto</li><li>Atención personalizada por WhatsApp</li></ul>
+        </div>
+      </div>
+
+      <div class="seo-about">
+        <h3>🏢 Sobre TECH</h3>
+        <p>TECH es una tienda en línea guatemalteca con más de 1,500 productos de tecnología, hogar y cocina, belleza, salud e higiene, vitaminas, herramientas, accesorios para carro y moto, deporte, librería, mascotas y Navidad.</p>
+        <p>Enviamos a la Ciudad de Guatemala y a todos los departamentos. Escríbenos por WhatsApp para resolver tus dudas o pedir una cotización sin compromiso.</p>
+      </div>
+
+      <div class="seo-faq">
+        <h3>❓ Preguntas Frecuentes</h3>
+        <div class="seo-faq-item"><div class="seo-faq-q">¿Hacen envíos a todos los departamentos de Guatemala?</div><div class="seo-faq-a">Sí. En la Ciudad de Guatemala la entrega es en 24 horas. A los departamentos enviamos con número de guía para que puedas rastrear tu paquete.</div></div>
+        <div class="seo-faq-item"><div class="seo-faq-q">¿Cuáles son las formas de pago?</div><div class="seo-faq-a">Transferencia o depósito bancario, pago contra entrega (5% de comisión en departamentos) y tarjetas Visa con algunas restricciones.</div></div>
+        <div class="seo-faq-item"><div class="seo-faq-q">¿Qué productos venden?</div><div class="seo-faq-a">Tecnología (audio, cargadores, cables, gaming), hogar y cocina, belleza, salud e higiene, vitaminas, herramientas, accesorios para carro y moto, deporte, librería, mascotas y artículos navideños.</div></div>
+        <div class="seo-faq-item"><div class="seo-faq-q">¿Cómo sé si un producto está disponible?</div><div class="seo-faq-a">Cada producto indica si está disponible o agotado. Si tienes dudas, escríbenos por WhatsApp y te confirmamos.</div></div>
+        <div class="seo-faq-item"><div class="seo-faq-q">¿Cómo hago un pedido?</div><div class="seo-faq-a">Agrega los productos al carrito y envía tu pedido por WhatsApp, o escríbenos directamente con el botón de chat. Te confirmamos disponibilidad, envío y forma de pago.</div></div>
+      </div>
+
+    </section>
+    <!-- ══ FIN SECCIÓN SEO ══ -->
+
+    <section id="contenedor-productos"></section>
+    
+    <div class="trust-badges" id="container-badges"></div>
+  </main>
+
+  <footer class="footer-principal">
+    <div class="footer-content">
+      <div class="footer-links" id="footer-social-links"></div>
+      <div class="footer-info">
+        <span id="f-copy"></span> | <span id="f-loc"></span> | <a href="politicas.html">Políticas de compra</a> | <a href="privacidad.html">Política de privacidad</a> | <span id="f-dev"></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- v9: navegación flotante. ⌂ va al Inicio (solo cuando aporta); el otro botón sube UN nivel y dice a dónde va.
+       Textos y acciones los controla js/app.js (actualizarBotonVolver). -->
+  <div id="volver-flotante" class="volver-flotante">
+    <button type="button" id="btn-inicio-float" class="btn-inicio-float" aria-label="Ir al Inicio" title="Ir al Inicio" hidden>
+      <i class="bi bi-house-door-fill" aria-hidden="true"></i>
+    </button>
+    <button type="button" id="btn-volver-float" aria-label="Volver arriba">
+      <i class="bi bi-arrow-up"></i>
+      <span>Volver arriba</span>
+    </button>
+  </div>
+
+  <div class="accesos-rapidos" role="complementary" aria-label="Accesos rápidos">
+  <a href="carrito.html" id="carrito-float" aria-label="Ir al carrito">
+    <i class="bi bi-cart-fill"></i>
+    <span id="contador-carrito" style="position:absolute; top:-2px; right:-2px; background:var(--danger); color:white; width:20px; height:20px; border-radius:50%; font-size:0.65rem; display:flex; align-items:center; justify-content:center; border:2px solid white; font-weight:bold;">0</span>
+  </a>
+  
+  <a id="wa-animado" href="#" target="_blank" rel="noopener noreferrer" aria-label="Chatea con TECH por WhatsApp">
+    <i class="bi bi-whatsapp" aria-hidden="true"></i>
+    <span class="wa-text">WhatsApp</span>
+  </a>
+  </div>
+
+  <!-- v9: barra de navegación inferior para celular. La sección actual se resalta. -->
+  <nav id="nav-inferior" class="nav-inferior" aria-label="Navegación principal">
+    <a href="./" class="ni-item" data-ni="inicio"><i class="bi bi-house-door"></i><i class="bi bi-house-door-fill"></i><span>Inicio</span></a>
+    <button type="button" class="ni-item" data-ni="categorias"><i class="bi bi-grid"></i><i class="bi bi-grid-fill"></i><span>Categorías</span></button>
+    <button type="button" class="ni-item" data-ni="buscar"><i class="bi bi-search"></i><i class="bi bi-search"></i><span>Buscar</span></button>
+    <a href="#" class="ni-item ni-wa" data-ni="whatsapp" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i><i class="bi bi-whatsapp"></i><span>WhatsApp</span></a>
+    <a href="carrito.html" class="ni-item" data-ni="carrito"><span class="ni-icono"><i class="bi bi-cart"></i><i class="bi bi-cart-fill"></i><b id="ni-contador" hidden>0</b></span><span>Carrito</span></a>
+  </nav>
+
+  <div id="modal-producto">
+    <div class="modal-contenido">
+      <button id="cerrar-modal-btn" aria-label="Cerrar modal"><i class="bi bi-x-lg"></i></button>
+      <div class="galeria-modal">
+        <div class="visor-principal">
+            <img id="img-modal-principal" src="" class="foto-principal" alt="Vista ampliada">
+            <div id="nav-modal-fotos" style="position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 10px; z-index: 5;">
+                <button id="prev-foto" style="background:rgba(255,255,255,0.9); border:none; border-radius:50%; width:32px; height:32px; cursor:pointer;"><i class="bi bi-chevron-left"></i></button>
+                <button id="next-foto" style="background:rgba(255,255,255,0.9); border:none; border-radius:50%; width:32px; height:32px; cursor:pointer;"><i class="bi bi-chevron-right"></i></button>
+            </div>
+        </div>
+        <div id="modal-thumbnails" style="display:flex; gap:6px; margin-top:10px; overflow-x:auto; padding-bottom:4px;"></div>
+      </div>
+      <div class="info-modal" style="display:flex; flex-direction:column;">
+        <div id="modal-badge-estado" style="margin-bottom:0.5rem;"></div>
+        <h2 id="modal-titulo" style="margin-bottom:0.75rem; font-size:1.3rem; color:var(--text-dark); line-height:1.3;"></h2>
+        <p id="modal-descripcion" style="margin-bottom:1.25rem; color:#555; font-size: 0.88rem; line-height:1.5; overflow-y:auto; max-height:120px;"></p>
+        <div id="modal-precio" style="font-size:1.6rem; font-weight:800; color:var(--primary); margin-bottom:1.25rem; margin-top:auto;"></div>
+        <button id="btn-agregar-modal" class="btn-add">Agregar al pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
